@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(RenameMe.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(CraigslistTracker.Repo, :manual)

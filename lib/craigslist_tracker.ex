@@ -1,6 +1,6 @@
-defmodule RenameMe do
+defmodule CraigslistTracker do
   @moduledoc """
-  RenameMe keeps the contexts that define your domain
+  CraigslistTracker keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

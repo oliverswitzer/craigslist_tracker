@@ -1,4 +1,4 @@
-defmodule RenameMeWeb.ChannelCase do
+defmodule CraigslistTrackerWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule RenameMeWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use RenameMeWeb.ChannelCase, async: true`, although
+  by setting `use CraigslistTrackerWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,15 +21,15 @@ defmodule RenameMeWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import RenameMeWeb.ChannelCase
+      import CraigslistTrackerWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint RenameMeWeb.Endpoint
+      @endpoint CraigslistTrackerWeb.Endpoint
     end
   end
 
   setup tags do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(RenameMe.Repo, shared: not tags[:async])
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(CraigslistTracker.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
     :ok
   end

@@ -1,4 +1,4 @@
-defmodule RenameMe.DataCase do
+defmodule CraigslistTracker.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule RenameMe.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use RenameMe.DataCase, async: true`, although
+  by setting `use CraigslistTracker.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,17 +18,17 @@ defmodule RenameMe.DataCase do
 
   using do
     quote do
-      alias RenameMe.Repo
+      alias CraigslistTracker.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import RenameMe.DataCase
+      import CraigslistTracker.DataCase
     end
   end
 
   setup tags do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(RenameMe.Repo, shared: not tags[:async])
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(CraigslistTracker.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
     :ok
   end

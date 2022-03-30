@@ -7,14 +7,14 @@
 # General application configuration
 import Config
 
-config :rename_me,
-  ecto_repos: [RenameMe.Repo]
+config :craigslist_tracker,
+  ecto_repos: [CraigslistTracker.Repo]
 
 # Configures the endpoint
-config :rename_me, RenameMeWeb.Endpoint,
+config :craigslist_tracker, CraigslistTrackerWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: RenameMeWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: RenameMe.PubSub,
+  render_errors: [view: CraigslistTrackerWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: CraigslistTracker.PubSub,
   live_view: [signing_salt: "mqvxIqqV"]
 
 # Configures the mailer
@@ -24,7 +24,7 @@ config :rename_me, RenameMeWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :rename_me, RenameMe.Mailer, adapter: Swoosh.Adapters.Local
+config :craigslist_tracker, CraigslistTracker.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

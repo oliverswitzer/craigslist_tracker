@@ -1,5 +1,5 @@
-defmodule RenameMeWeb.ErrorView do
-  use RenameMeWeb, :view
+defmodule CraigslistTrackerWeb.ErrorView do
+  use CraigslistTrackerWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

@@ -1,4 +1,4 @@
-# RenameMe
+# CraigslistTracker
 
 To start your Phoenix server:
 

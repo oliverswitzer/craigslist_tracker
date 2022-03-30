@@ -1,4 +1,4 @@
-defmodule RenameMeWeb.Telemetry do
+defmodule CraigslistTrackerWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -31,23 +31,23 @@ defmodule RenameMeWeb.Telemetry do
       ),
 
       # Database Metrics
-      summary("rename_me.repo.query.total_time",
+      summary("craigslist_tracker.repo.query.total_time",
         unit: {:native, :millisecond},
         description: "The sum of the other measurements"
       ),
-      summary("rename_me.repo.query.decode_time",
+      summary("craigslist_tracker.repo.query.decode_time",
         unit: {:native, :millisecond},
         description: "The time spent decoding the data received from the database"
       ),
-      summary("rename_me.repo.query.query_time",
+      summary("craigslist_tracker.repo.query.query_time",
         unit: {:native, :millisecond},
         description: "The time spent executing the query"
       ),
-      summary("rename_me.repo.query.queue_time",
+      summary("craigslist_tracker.repo.query.queue_time",
         unit: {:native, :millisecond},
         description: "The time spent waiting for a database connection"
       ),
-      summary("rename_me.repo.query.idle_time",
+      summary("craigslist_tracker.repo.query.idle_time",
         unit: {:native, :millisecond},
         description:
           "The time the connection spent waiting before being checked out for the query"
@@ -65,7 +65,7 @@ defmodule RenameMeWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {RenameMeWeb, :count_users, []}
+      # {CraigslistTrackerWeb, :count_users, []}
     ]
   end
 end

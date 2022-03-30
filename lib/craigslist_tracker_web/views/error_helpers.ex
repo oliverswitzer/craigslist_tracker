@@ -1,4 +1,4 @@
-defmodule RenameMeWeb.ErrorHelpers do
+defmodule CraigslistTrackerWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -39,9 +39,9 @@ defmodule RenameMeWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(RenameMeWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(CraigslistTrackerWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(RenameMeWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(CraigslistTrackerWeb.Gettext, "errors", msg, opts)
     end
   end
 end

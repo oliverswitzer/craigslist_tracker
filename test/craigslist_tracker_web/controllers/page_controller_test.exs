@@ -1,5 +1,5 @@
-defmodule RenameMeWeb.PageControllerTest do
-  use RenameMeWeb.ConnCase
+defmodule CraigslistTrackerWeb.PageControllerTest do
+  use CraigslistTrackerWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

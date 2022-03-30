@@ -1,10 +1,10 @@
 import Config
 
 # Configure your database
-config :rename_me, RenameMe.Repo,
+config :craigslist_tracker, CraigslistTracker.Repo,
   username: "postgres",
   password: "postgres",
-  database: "rename_me_dev",
+  database: "craigslist_tracker_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,7 +15,7 @@ config :rename_me, RenameMe.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :rename_me, RenameMeWeb.Endpoint,
+config :craigslist_tracker, CraigslistTrackerWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -53,13 +53,13 @@ config :rename_me, RenameMeWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :rename_me, RenameMeWeb.Endpoint,
+config :craigslist_tracker, CraigslistTrackerWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/rename_me_web/(live|views)/.*(ex)$",
-      ~r"lib/rename_me_web/templates/.*(eex)$"
+      ~r"lib/craigslist_tracker_web/(live|views)/.*(ex)$",
+      ~r"lib/craigslist_tracker_web/templates/.*(eex)$"
     ]
   ]
 

@@ -1,12 +1,12 @@
-defmodule RenameMeWeb do
+defmodule CraigslistTrackerWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use RenameMeWeb, :controller
-      use RenameMeWeb, :view
+      use CraigslistTrackerWeb, :controller
+      use CraigslistTrackerWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,19 +19,19 @@ defmodule RenameMeWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: RenameMeWeb
+      use Phoenix.Controller, namespace: CraigslistTrackerWeb
 
       import Plug.Conn
-      import RenameMeWeb.Gettext
-      alias RenameMeWeb.Router.Helpers, as: Routes
+      import CraigslistTrackerWeb.Gettext
+      alias CraigslistTrackerWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/rename_me_web/templates",
-        namespace: RenameMeWeb
+        root: "lib/craigslist_tracker_web/templates",
+        namespace: CraigslistTrackerWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -45,7 +45,7 @@ defmodule RenameMeWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {RenameMeWeb.LayoutView, "live.html"}
+        layout: {CraigslistTrackerWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
     end
@@ -80,7 +80,7 @@ defmodule RenameMeWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import RenameMeWeb.Gettext
+      import CraigslistTrackerWeb.Gettext
     end
   end
 
@@ -95,9 +95,9 @@ defmodule RenameMeWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import RenameMeWeb.ErrorHelpers
-      import RenameMeWeb.Gettext
-      alias RenameMeWeb.Router.Helpers, as: Routes
+      import CraigslistTrackerWeb.ErrorHelpers
+      import CraigslistTrackerWeb.Gettext
+      alias CraigslistTrackerWeb.Router.Helpers, as: Routes
     end
   end
 

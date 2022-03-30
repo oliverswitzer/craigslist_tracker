@@ -1,12 +1,12 @@
-defmodule RenameMeWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :rename_me
+defmodule CraigslistTrackerWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :craigslist_tracker
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_rename_me_key",
+    key: "_craigslist_tracker_key",
     signing_salt: "0b0JVxUV"
   ]
 
@@ -18,7 +18,7 @@ defmodule RenameMeWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :rename_me,
+    from: :craigslist_tracker,
     gzip: false,
     only: ~w(assets fonts images favicon.ico robots.txt)
 
@@ -28,7 +28,7 @@ defmodule RenameMeWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :rename_me
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :craigslist_tracker
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -46,5 +46,5 @@ defmodule RenameMeWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug RenameMeWeb.Router
+  plug CraigslistTrackerWeb.Router
 end

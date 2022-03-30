@@ -1,9 +1,9 @@
-defmodule RenameMe.MixProject do
+defmodule CraigslistTracker.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :rename_me,
+      app: :craigslist_tracker,
       version: "0.1.0",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule RenameMe.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {RenameMe.Application, []},
+      mod: {CraigslistTracker.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
