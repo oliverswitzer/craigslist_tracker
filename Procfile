@@ -1,1 +1,1 @@
-web: mix phx.server
+web: mix playwright.install && mix phx.server
