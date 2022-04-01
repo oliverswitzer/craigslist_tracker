@@ -1,4 +1,6 @@
 defmodule CraigslistTracker do
+  require Logger
+
   def scrape(search_query) do
     browser = Playwright.launch(:chromium)
     page = browser |> Playwright.Browser.new_page()
@@ -6,7 +8,7 @@ defmodule CraigslistTracker do
     page
     |> Playwright.Page.goto(
       "https://www.searchcraigslist.net/results?#{URI.encode_query(%{q: search_query})}"
-      |> IO.inspect()
+      |> info()
     )
 
     listings =
@@ -14,46 +16,75 @@ defmodule CraigslistTracker do
       |> Playwright.Page.query_selector_all(".gs-webResult")
 
     listings
-    |> Enum.map(fn el ->
-      Playwright.ElementHandle.text_content(el)
-      |> String.trim()
-    end)
-
-    link =
-      listings
-      |> List.first()
+    |> Enum.map(fn listing_el ->
+      listing_el
       |> Playwright.ElementHandle.query_selector("a.gs-title")
       |> Playwright.ElementHandle.get_attribute("href")
-      |> IO.inspect(label: "link")
+    end)
+    |> Enum.map(fn listing_url ->
+      :timer.sleep(trunc(:rand.uniform() * 1000))
+      save_listing(page, listing_url)
+    end)
 
-    Playwright.Page.goto(page, link)
+    browser
+    |> Playwright.Browser.close()
+  end
+
+  defp save_listing(page, listing_url) do
+    info("Saving listing #{inspect(listing_url)}")
+
+    Playwright.Page.goto(page, listing_url)
 
     page
     |> Playwright.Page.wait_for_selector(".posting")
 
+    if listing_status(page) == :valid do
+      title = get_text(page, "#titletextonly") |> String.trim()
+      price = get_text(page, ".price") |> String.trim()
+      location = get_text(page, ".area a") |> String.trim()
+
+      info("Creating listing #{title}, #{price}, #{location}")
+
+      {:ok, _listing} =
+        CraigslistTracker.Listings.create(%{title: title, price: price, location: location})
+    end
+  end
+
+  defp get_text(page, css_selector), do: Playwright.Page.text_content(page, css_selector)
+
+  defp listing_status(page) do
     locator =
       page
       |> Playwright.Locator.new(".postingtitletext")
 
     if Playwright.Locator.count(locator) > 0 do
-      IO.puts("this is a parseable ad")
-      Playwright.Locator.text_content(locator)
+      :valid
     else
       page_text =
         page
         |> Playwright.Page.text_content("body")
 
       if String.contains?(page_text, "This posting has been deleted") do
-        IO.puts("posting was deleted by user")
+        :deleted
       else
-        IO.puts("this is not a parseable ad")
+        :invalid
       end
     end
+  end
 
-    # |> Playwright.ElementHandle.text_content()
-    # |> IO.inspect(label: "body")
+  defp info(msg) do
+    Logger.info("#{inspect(__MODULE__)}: #{msg}")
+    msg
+  end
+end
 
-    browser
-    |> Playwright.Browser.close()
+defmodule CraigslistTracker.Listings do
+  alias CraigslistTracker.Listing
+  alias CraigslistTracker.Repo
+
+  @spec create(params :: map()) :: {:ok, %Listing{}} | {:error, Ecto.Changeset.t()}
+  def create(params) do
+    Listing.changeset(%Listing{}, params)
+    |> Repo.insert()
   end
 end
